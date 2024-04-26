@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
     const fetchUserDetails = async () => {
       try {
         const userDetails = await getUserData(4);
-        dispatch(setUser(userDetails));
+        dispatch(setUser(userDetails.data));
       } catch (error) {
         console.error('Failed to fetch user details:', error);
       }
@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <header className="bg-gray-900 text-white py-4 px-8 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Your Website</h1>
+        <h1 className="text-xl font-bold">{process.env.REACT_APP_APP_NAME}</h1>
         <button onClick={handleLogout} className="text-sm font-semibold hover:underline">
           Logout
         </button>
@@ -42,15 +42,12 @@ const Dashboard: React.FC = () => {
         <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-8">User Details</h1>
         <div className="bg-gray-100 p-8 rounded-lg shadow-md">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-lg font-semibold text-gray-700">Name:</span>
             <span className="text-lg text-gray-900">{userInfo?.data?.first_name} {userInfo?.data?.last_name}</span>
           </div>
           <div className="flex items-center justify-between mb-4">
-            <span className="text-lg font-semibold text-gray-700">Email:</span>
             <span className="text-lg text-gray-900">{userInfo?.data?.email}</span>
           </div>
           <div className="flex items-center justify-between mb-4">
-            <span className="text-lg font-semibold text-gray-700">Avatar:</span>
             {userInfo?.data?.avatar && (
               <img src={userInfo.data.avatar} alt="Avatar" className="w-10 h-10 rounded-full" />
             )}

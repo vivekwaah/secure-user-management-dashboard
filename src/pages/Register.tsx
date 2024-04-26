@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { signUp } from '../services/api';
 import { setToken, setUserId } from '../features/auth/authSlice';
@@ -9,8 +9,10 @@ const Register: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('eve.holt@reqres.in');
-  const [password, setPassword] = useState('pistol');
+  const userEmail = process.env.REACT_APP_SAMPLE_REQ_USER_EMAIL ?? '';
+  const userPassword = process.env.REACT_APP_SAMPLE_REQ_USER_PASSWORD ?? '';
+  const [email, setEmail] = useState(userEmail);
+  const [password, setPassword] = useState(userPassword);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const Register: React.FC = () => {
       dispatch(setToken(response.data.token));
 
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         navigate('/dashboard');
       } else {
         throw Error('Login Failed')
@@ -89,14 +91,17 @@ const Register: React.FC = () => {
               </div>
             </div>
 
-            <div>
+            <div className="flex justify-between items-center">
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign Up
+                Register
               </button>
+              <Link to="/login" className="text-indigo-600 hover:underline">
+                Already register
+              </Link>
             </div>
           </form>
         </div>

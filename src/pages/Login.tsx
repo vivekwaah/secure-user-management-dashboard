@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../services/api';
 import { setToken } from '../features/auth/authSlice';
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('eve.holt@reqres.in');
-  const [password, setPassword] = useState('pistol');
+  const userEmail = process.env.REACT_APP_SAMPLE_REQ_USER_EMAIL ?? '';
+  const userPassword = process.env.REACT_APP_SAMPLE_REQ_USER_PASSWORD ?? '';
+  const [email, setEmail] = useState(userEmail);
+  const [password, setPassword] = useState(userPassword);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -75,13 +77,16 @@ const Login: React.FC = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex justify-between items-center">
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign in
             </button>
+            <Link to="/register" className="text-indigo-600 hover:underline">
+              New User
+            </Link>
           </div>
         </form>
       </div>

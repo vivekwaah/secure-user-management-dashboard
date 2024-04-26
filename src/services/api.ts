@@ -17,6 +17,10 @@ export interface SignUpResponse {
 	token: string;
 }
 
+export interface SignInResponse {
+	token: string;
+}
+
 export interface UserData {
 	id: number;
 	email: string;
@@ -25,7 +29,12 @@ export interface UserData {
 	avatar: string;
 }
 
-export async function signIn(credentials: SignInCredentials) {
+export interface User {
+	data: UserData;
+	support: any;
+}
+
+export async function signIn(credentials: SignInCredentials): Promise<AxiosResponse<SignInResponse>> {
 	try {
 		return await axios.post(`${BASE_URL}/login`, credentials);
 	} catch (error) {
@@ -33,7 +42,7 @@ export async function signIn(credentials: SignInCredentials) {
 	}
 }
 
-export async function signUp(credentials: SignUpCredentials) {
+export async function signUp(credentials: SignUpCredentials): Promise<AxiosResponse<SignUpResponse>> {
 	try {
 		return await axios.post(`${BASE_URL}/register`, credentials);
 	} catch (error) {
@@ -41,10 +50,9 @@ export async function signUp(credentials: SignUpCredentials) {
 	}
 }
 
-export async function getUserData(userId: number) {
+export async function getUserData(userId: number): Promise<AxiosResponse<User>> {
 	try {
-		const response = await axios.get(`${BASE_URL}/users/${userId}`);
-		return response.data;
+		return await axios.get(`${BASE_URL}/users/${userId}`);
 	} catch (error) {
 		throw new Error('Failed to fetch user data. Please try again later.');
 	}
