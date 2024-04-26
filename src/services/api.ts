@@ -25,25 +25,23 @@ export interface UserData {
 	avatar: string;
 }
 
-export async function signIn(credentials: SignInCredentials): Promise<AxiosResponse<UserData>> {
+export async function signIn(credentials: SignInCredentials) {
 	try {
-		const response = await axios.post(`${BASE_URL}/login`, credentials);
-		return response.data;
+		return await axios.post(`${BASE_URL}/login`, credentials);
 	} catch (error) {
 		throw new Error('Failed to sign in. Please check your credentials.');
 	}
 }
 
 export async function signUp(credentials: SignUpCredentials) {
-  try {
-    const response = await axios.post(`${BASE_URL}/register`, credentials);
-    return response.data;
-  } catch (error) {
-    throw new Error('Failed to sign up. Please try again later.');
-  }
+	try {
+		return await axios.post(`${BASE_URL}/register`, credentials);
+	} catch (error) {
+		throw new Error('Failed to sign up. Please try again later.');
+	}
 }
 
-export async function getUserData(userId: number): Promise<AxiosResponse<UserData>> {
+export async function getUserData(userId: number) {
 	try {
 		const response = await axios.get(`${BASE_URL}/users/${userId}`);
 		return response.data;

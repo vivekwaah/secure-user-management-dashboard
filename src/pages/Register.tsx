@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { signUp } from '../services/api';
-import { setToken } from '../features/auth/authSlice';
+import { setToken, setUserId } from '../features/auth/authSlice';
 
 const Register: React.FC = () => {
 
@@ -20,9 +20,16 @@ const Register: React.FC = () => {
         password,
       });
 
-      const token = response.token;
-      dispatch(setToken(token));
-      navigate('/dashboard');
+      dispatch(setUserId(response.data.id));
+      dispatch(setToken(response.data.token));
+
+
+      if (response.status == 200) {
+        navigate('/dashboard');
+      } else {
+        throw Error('Login Failed')
+      }
+
     } catch (error) {
       console.error('Failed to sign up:', error);
     }
