@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { signUp } from '../services/api';
@@ -9,13 +9,17 @@ const Register: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('pistol');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await signUp({
-        email: 'eve.holt@reqres.in',
-        password: 'pistol',
+        email,
+        password,
       });
+
       const token = response.token;
       dispatch(setToken(token));
       navigate('/dashboard');
@@ -50,6 +54,8 @@ const Register: React.FC = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -69,6 +75,8 @@ const Register: React.FC = () => {
                   type="password"
                   autoComplete="new-password"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -89,4 +97,5 @@ const Register: React.FC = () => {
     </>
   )
 }
+
 export default Register;
