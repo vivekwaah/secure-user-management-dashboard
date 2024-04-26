@@ -4,6 +4,7 @@ import { RootState } from '../store/store';
 import { getUserData } from '../services/api';
 import { clearToken, setUser } from '../store/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,11 @@ const Dashboard: React.FC = () => {
         const userDetails = await getUserData(4);
         dispatch(setUser(userDetails.data));
       } catch (error) {
-        console.error('Failed to fetch user details:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: 'Failed to fetch user details:',
+        });
       }
     };
 

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { signUp } from '../services/api';
 import { setToken, setUserId } from '../store/auth/authSlice';
+import Swal from "sweetalert2";
 
 const Register: React.FC = () => {
 
@@ -33,7 +34,12 @@ const Register: React.FC = () => {
       }
 
     } catch (error) {
-      console.error('Failed to sign up:', error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to sign up!",
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
     }
   };
 
@@ -42,12 +48,12 @@ const Register: React.FC = () => {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            className="mx-auto h-10 w-auto invert"
+            src="https://webreinvent.com/images/logo-webreinvent.svg"
+            alt="webreinvent"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create an account
+            Register new account
           </h2>
         </div>
 
