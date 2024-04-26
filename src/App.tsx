@@ -1,21 +1,18 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Home from './pages/Home';
-import ProtectedRoute from './services/ProtectedRoute';
+import AppTemplate from './components/template/template';
+import AppHeader from './components/app/header';
+import AppFooter from './components/app/footer';
+import AppRoutes from './routes/Routes';
 
 const App: React.FC = () => {
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-    </Routes>
+    <AppTemplate>
+      {{
+        header: <AppHeader />,
+        footer: <AppFooter />,
+        content: <AppRoutes />,
+      }}
+    </AppTemplate>
   );
 };
 

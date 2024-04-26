@@ -10,6 +10,10 @@ A full-stack authentication application built with React, Redux Toolkit, and Tai
 - Redux Toolkit for state management.
 - Tailwind CSS for styling.
 
+## System Requirements
+
+- Node 18^
+
 ## Technologies Used
 
 - React.js
@@ -27,38 +31,25 @@ A full-stack authentication application built with React, Redux Toolkit, and Tai
    git@github.com:vivekwaah/secure-user-management-dashboard.git
    ```
 
-2. Install dependencies:
+2. Copy `.env.example` to `.env`
+
+3. Install dependencies:
 
    ```bash
    cd secure-user-management-dashboard
    npm install
    ```
 
-3. Start the development server:
+4. Start the development server:
 
    ```bash
    npm start
    ```
 
-4. Visit `http://localhost:3000` in your browser to view the application.
+5. Visit `http://localhost:3000` in your browser to view the application.
 
 ## Usage
 
 1. Sign in to your account or register as a new user.
 2. Explore the protected dashboard page.
 3. Logout when done.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request if you find any bugs or would like to suggest enhancements.
-
-## Acknowledgements
-
-- [ReqRes](https://reqres.in/) for providing the REST API.
-- [React](https://reactjs.org/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-
----
-
-Feel free to customize the README further with additional sections or information specific to your project!
