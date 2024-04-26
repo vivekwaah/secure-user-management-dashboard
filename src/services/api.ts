@@ -1,38 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
+import {
+	SignInCredentials,
+	SignInResponse,
+	SignUpCredentials,
+	SignUpResponse
+} from '../interfaces/authInterface';
+import { User } from '../interfaces/userInterface';
 
-const BASE_URL = 'https://reqres.in/api';
-
-export interface SignInCredentials {
-	email: string;
-	password: string;
-}
-
-export interface SignUpCredentials {
-	email: string;
-	password: string;
-}
-
-export interface SignUpResponse {
-	id: string,
-	token: string;
-}
-
-export interface SignInResponse {
-	token: string;
-}
-
-export interface UserData {
-	id: number;
-	email: string;
-	first_name: string;
-	last_name: string;
-	avatar: string;
-}
-
-export interface User {
-	data: UserData;
-	support: any;
-}
+const BASE_URL = process.env.REACT_APP_BACKEND_API;
 
 export async function signIn(credentials: SignInCredentials): Promise<AxiosResponse<SignInResponse>> {
 	try {

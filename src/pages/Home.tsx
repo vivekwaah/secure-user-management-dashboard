@@ -8,7 +8,7 @@ const Home: React.FC = () => {
         Secure User Management Dashboard
       </h1>
       <p className="text-lg sm:text-xl text-gray-600 text-center px-4">
-        Thank you for visiting! We're delighted to have you here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        WebReinvent is a software development company that provides a range of end-to-end software product development services.
       </p>
       <div className="mt-8">
         <Link to="/login" className="text-indigo-600 font-semibold hover:underline">Login</Link>

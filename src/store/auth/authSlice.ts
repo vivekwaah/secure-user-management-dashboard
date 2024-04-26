@@ -1,23 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface UserData {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-}
-
-interface User {
-  data: UserData;
-  support: any;
-}
-
-interface AuthState {
-  token: string | null;
-  userInfo: User | null,
-  userId: string | number | null
-}
+import { User } from '../../interfaces/userInterface';
+import { AuthState } from '../../interfaces/authInterface';
 
 const userToken = sessionStorage.getItem('userToken')
   ? sessionStorage.getItem('userToken')
