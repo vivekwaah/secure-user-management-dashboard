@@ -19,8 +19,12 @@ interface AuthState {
   userId: string | number | null
 }
 
+const userToken = sessionStorage.getItem('userToken')
+  ? sessionStorage.getItem('userToken')
+  : null
+
 const initialState: AuthState = {
-  token: null,
+  token: userToken,
   userInfo: null,
   userId: null
 };
@@ -30,12 +34,14 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setToken(state, action: PayloadAction<string>) {
+      sessionStorage.setItem('userToken', action.payload)
       state.token = action.payload;
     },
     setUserId(state, action: PayloadAction<string>) {
       state.userId = action.payload;
     },
     clearToken(state) {
+      sessionStorage.removeItem('userToken')
       state.token = null;
     },
     setUser(state, action: PayloadAction<User>) {

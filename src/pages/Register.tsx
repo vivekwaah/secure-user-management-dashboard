@@ -38,7 +38,6 @@ const Register: React.FC = () => {
         icon: "error",
         title: "Oops...",
         text: "Failed to sign up!",
-        footer: '<a href="#">Why do I have this issue?</a>'
       });
     }
   };
