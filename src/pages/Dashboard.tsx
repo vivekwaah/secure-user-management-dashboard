@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { getUserData } from '../services/api';
-import { clearToken, setUser } from '../features/auth/authSlice';
+import { clearToken, setUser } from '../store/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../services/api';
-import { setToken } from '../features/auth/authSlice';
+import { setToken } from '../store/auth/authSlice';
 
 const Login: React.FC = () => {
   const userEmail = process.env.REACT_APP_SAMPLE_REQ_USER_EMAIL ?? '';

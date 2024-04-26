@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { signUp } from '../services/api';
-import { setToken, setUserId } from '../features/auth/authSlice';
+import { setToken, setUserId } from '../store/auth/authSlice';
 
 const Register: React.FC = () => {
 
