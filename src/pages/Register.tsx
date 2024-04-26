@@ -1,6 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { signUp } from '../services/api';
+import { setToken } from '../features/auth/authSlice';
 
 const Register: React.FC = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await signUp({
+        email: 'eve.holt@reqres.in',
+        password: 'pistol',
+      });
+      const token = response.token;
+      dispatch(setToken(token));
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Failed to sign up:', error);
+    }
+  };
 
   return (
     <>
@@ -53,26 +75,9 @@ const Register: React.FC = () => {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-gray-900">
-                  Confirm Password
-                </label>
-              </div>
-              <div className="mt-2">
-                <input
-                  id="confirm-password"
-                  name="confirm-password"
-                  type="password"
-                  autoComplete="new-password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign Up
